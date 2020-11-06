@@ -1,0 +1,11 @@
+first
+second
+third
+fourth
+
+//weclome message
+//ask for file's name's
+//create files
+//find columns from config.txt
+//encrypt columns from dataset.txt
+//write encrypted columns in new file
