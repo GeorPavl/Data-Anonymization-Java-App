@@ -7,20 +7,20 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // prints welcome page
-        AppUtils.printWelcomeMessage();
+        AppUtils.Printer.printWelcomeMessage();
 
         // read config file
-        MyFile configFile = AppUtils.inputConfigFile();
+        MyFile configFile = AppUtils.UserInput.inputConfigFile();
 
         // read dataset file
-        MyFile datasetFile = AppUtils.inputDatasetFile();
+        MyFile datasetFile = AppUtils.UserInput.inputDatasetFile();
 
         // encrypt columns and store in List<String>
-        List<String> encryptedFileInList = AppUtils.encryptFile(configFile,datasetFile);
+        List<String> encryptedFileInList = AppUtils.Encryptor.encryptFile(configFile,datasetFile);
         // print encrypted list
-        AppUtils.printList(encryptedFileInList);
+        AppUtils.Printer.printList(encryptedFileInList);
 
         // create new .txt file with encrypted data
-        AppUtils.createNewFile(encryptedFileInList);
+        AppUtils.Encryptor.createNewFile(encryptedFileInList);
     }
 }
