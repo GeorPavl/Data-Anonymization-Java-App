@@ -1,26 +1,26 @@
-import File.MyFile;
-
-import java.util.List;
+import AppUtils.Encryption;
+import AppUtils.Printer;
+import AppUtils.UserInput;
+import File.ConfigurationFile;
+import File.DatasetFile;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        // prints welcome page
-        AppUtils.Printer.printWelcomeMessage();
+        // print welcome message
+        Printer.printAppMessage("welcome");
 
-        // read config file
-        MyFile configFile = AppUtils.UserInput.inputConfigFile();
+        // read user's input for config file
+        ConfigurationFile configurationFile = UserInput.inputConfig();
 
-        // read dataset file
-        MyFile datasetFile = AppUtils.UserInput.inputDatasetFile();
+        // read user's input for dataset file
+        DatasetFile datasetFile = UserInput.inputDataset();
 
-        // encrypt columns and store in List<String>
-        List<String> encryptedFileInList = AppUtils.Encryptor.encryptFile(configFile,datasetFile);
-        // print encrypted list
-        AppUtils.Printer.printList(encryptedFileInList);
+        // encrypt data and create new file
+        Encryption.encryptFile(configurationFile, datasetFile);
 
-        // create new .txt file with encrypted data
-        AppUtils.Encryptor.createNewFile(encryptedFileInList);
+        // print closing message
+        Printer.printAppMessage("close");
     }
 }

@@ -9,16 +9,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * The AES-GCM inputs:
- *
- * AES Secret key (256 bits)
- * IV – 96 bits (12 bytes)
- * Length (in bits) of authentication tag – 128 bits (16 bytes)
- * In Java, we use AES/GCM/NoPadding to represent the AES-GCM algorithm.
- * For the encrypted output, we prefix the 16 bytes IV to the encrypted text (ciphertext), because we need the same IV for decryption.
- **/
-public class EncryptorAesGcm implements EncryptorAES.Encryptor {
+public class EncryptorAesGcm implements Encryptor{
 
     // fields
     private static final String ENCRYPT_ALGO = "AES/GCM/NoPadding";
