@@ -23,7 +23,11 @@ public class Printer {
             System.out.println("\n------ Encrypted File ------");
             System.out.println("Please input new file's name (file @\\src): ");
 
-        }else{
+        }else if (typeOf == "fileType"){
+            System.out.println("------ Select file's type ------");
+            System.out.println("Please select type of the file you want to encrypt: ");
+            System.out.println("1 -> .txt (recommended!)\n2 -> .pdf\n3 -> .csv");
+        }else {
             System.out.println("Error message.");
         }
 

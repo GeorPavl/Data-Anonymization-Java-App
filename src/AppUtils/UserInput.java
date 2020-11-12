@@ -13,6 +13,25 @@ public class UserInput{
 
     private static final Scanner scanner = new Scanner(System.in);
 
+
+    // read user's choice for file type (.txt, .word, .csv...)
+    public static int inputFileType() throws Exception {
+
+        // print message
+        Printer.printMessageForInput("fileType");
+
+        // read user's input
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        // method to check user's file-type and find
+        checkFileType(choice);
+
+        //
+
+        return 0;
+    }
+
     // read user's fileName and creates a new ConfigurationFile
     public static ConfigurationFile inputConfig(){
 
@@ -78,4 +97,25 @@ public class UserInput{
         }
     }
 
+    // checks for user's input and call methods for each one
+    public static void checkFileType(int choice) throws Exception {
+
+        if (choice == 1){
+            // read user's input for config file
+            ConfigurationFile configurationFile = UserInput.inputConfig();
+
+            // read user's input for dataset file
+            DatasetFile datasetFile = UserInput.inputDataset();
+
+            // encrypt data and create new file
+            Encryption.encryptFile(configurationFile, datasetFile);
+
+        }else if (choice == 2){
+            System.out.println("\nThere is no implementation yet!\n Please select another type of file:\n");
+            UserInput.inputFileType();
+        }else{
+            System.out.println("There is no implementation yet!");
+            UserInput.inputFileType();
+        }
+    }
 }
