@@ -107,8 +107,11 @@ public class UserInput{
             // read user's input for dataset file
             DatasetFile datasetFile = UserInput.inputDataset();
 
+            // read user's inputs for encryption
+            List<Integer> choices = UserInput.inputEncryptionChoices();
+            System.out.println(choices.get(0) + " " + choices.get(1));
             // encrypt data and create new file
-            Encryption.encryptFile(configurationFile, datasetFile);
+            Encryption.encryptFile(configurationFile, datasetFile, choices);
 
         }else if (choice == 2){
             System.out.println("\nThere is no implementation yet!\n Please select another type of file:\n");
@@ -117,5 +120,30 @@ public class UserInput{
             System.out.println("There is no implementation yet!");
             UserInput.inputFileType();
         }
+    }
+
+    // checks for user's inputs for encryption
+    public static List<Integer> inputEncryptionChoices(){
+
+        // initialize users choices
+        List<Integer> choices = new ArrayList<>();
+
+        // print message
+        Printer.printMessageForInput("iv");
+
+        // read user's input
+        int iv = scanner.nextInt();
+        scanner.nextLine();
+        choices.add(0,iv);
+
+        // print message
+        Printer.printMessageForInput("secretKey");
+
+        // read user's input
+        int secretKey = scanner.nextInt();
+        scanner.nextLine();
+        choices.add(1,secretKey);
+
+        return choices;
     }
 }

@@ -18,10 +18,6 @@ public class Encryption {
     // scanner
     private static final Scanner scanner = new Scanner(System.in);
 
-    // variables for encryption
-    private static final int AES_KEY_BIT = 256;
-    private static final int IV_LENGTH_BYTE = 12;
-
     // find columns for encryption in dataset file
     public static List<Integer> findColumns(List<String> configFile, List<String> datasetFile) {
         System.out.println("------ Find Columns ------");
@@ -42,7 +38,25 @@ public class Encryption {
     }
 
     // encrypt columns of dataset
-    public static List<String> encryptColumns(List<Integer> indexes, List<String> datasetFile) throws Exception {
+    public static List<String> encryptColumns(List<Integer> indexes, List<String> datasetFile,List<Integer> choices) throws Exception {
+        int IV_LENGTH_BYTE = 0;
+        int AES_KEY_BIT = 0;
+        // variables for encryption from user's choices
+        if (choices.get(0) == 1){
+            IV_LENGTH_BYTE = 12;
+        }else if(choices.get(0) == 2){
+            IV_LENGTH_BYTE = 14;
+        }else{
+            System.out.println("Error Message: Bad iv");
+        }
+
+        if (choices.get(1) == 1){
+            AES_KEY_BIT = 128;
+        }else if(choices.get(1) == 2){
+            AES_KEY_BIT = 256;
+        }else{
+            System.out.println("Error Message: Bad key");
+        }
 
         System.out.println("\n------ Encrypt Columns ------");
 
@@ -107,9 +121,9 @@ public class Encryption {
     }
 
     // encrypt file
-    public static void encryptFile(ConfigurationFile configFile, DatasetFile datasetFile) throws Exception {
+    public static void encryptFile(ConfigurationFile configFile, DatasetFile datasetFile, List<Integer> choices) throws Exception {
         List<Integer> colsToEncrypt = Encryption.findColumns(configFile.getFileInList(), datasetFile.getFileInList());
-        List<String> encryptedColumns = Encryption.encryptColumns(colsToEncrypt, datasetFile.getFileInList());
+        List<String> encryptedColumns = Encryption.encryptColumns(colsToEncrypt, datasetFile.getFileInList(),choices);
         Encryption.createNewFile(encryptedColumns);
     }
 

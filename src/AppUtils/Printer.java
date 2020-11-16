@@ -27,6 +27,14 @@ public class Printer {
             System.out.println("------ Select file's type ------");
             System.out.println("Please select type of the file you want to encrypt: ");
             System.out.println("1 -> .txt (recommended!)\n2 -> .pdf\n3 -> .csv");
+        }else if(typeOf == "iv") {
+            System.out.println("------ Select encryption's initial value ------");
+            System.out.println("Please select encryption's initial value in bytes: ");
+            System.out.println("1 -> 12 bytes\n2 -> 16 bytes");
+        }else if(typeOf == "secretKey"){
+            System.out.println("------ Select encryption's secret key ------");
+            System.out.println("Please select encryption's secret key in bytes: ");
+            System.out.println("1 -> 128 bytes\n2 -> 256 bytes");
         }else {
             System.out.println("Error message.");
         }
